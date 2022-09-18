@@ -24,15 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	let insertCommand = vscode.commands.registerCommand('googlefontimporter.testInsert', () => {
-		const editor = vscode.window.activeTextEditor;
-		if (editor) {
-			editor.edit(editBuilder => {
-				editBuilder.insert(editor.selection.active, "@import url('https://fonts.googleapis.com/css2?family=Roboto');");
-			});
-		}
+		vscode.window.showInputBox().then((fontName) => {
+			const editor = vscode.window.activeTextEditor;
+			if (editor) {
+				editor.edit(editBuilder => {
+					editBuilder.insert(editor.selection.active, "@import url('https://fonts.googleapis.com/css2?family=" + fontName + "');");
+				});
+			}
+		});
 	});
 
 	context.subscriptions.push(insertCommand);
+
 }
 
 // this method is called when your extension is deactivated
