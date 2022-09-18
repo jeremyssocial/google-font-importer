@@ -1,4 +1,16 @@
-# googlefontimporter README
+# Jeremys googlefontimporter README
+
+Latest feature: 18.06.2022 
+<br> 
+use the "test import" command to automatically create an import link for a font (provide the font name in an extra text field)
+![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](https://raw.githubusercontent.com/MyNameJeremy/googlefontimporter/googleFontImporter/featurePreview.gif)
+
+
+
+
+everything below this is still the example stuf because I still need to write the actual readme
+
+--- 
 
 This is the README for your extension "googlefontimporter". After writing up a brief description, we recommend including the following sections.
 
