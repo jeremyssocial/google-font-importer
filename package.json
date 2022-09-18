@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:googlefontimporter.helloWorld"
+    "onCommand:googlefontimporter.helloWorld",
+    "onCommand:googlefontimporter.testInsert"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -18,6 +19,10 @@
       {
         "command": "googlefontimporter.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "googlefontimporter.testInsert",
+        "title": "test insert"
       }
     ]
   },
