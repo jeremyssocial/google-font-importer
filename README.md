@@ -1,4 +1,4 @@
-# Jeremys googlefontimporter README
+# googlefontimporter README
 
 Latest feature: 18.06.2022 
 <br> 
