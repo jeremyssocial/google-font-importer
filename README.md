@@ -2,7 +2,7 @@
 
 Latest feature: 18.06.2022 
 <br> 
-use the "test import" command to automatically create an import link for a font (provide the font name in an extra text field)
+use the "googlefontimporter.importFont" command to automatically create an import link for a font (provide the font name in an extra text field)
 <br>
 ![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](https://raw.githubusercontent.com/MyNameJeremy/googlefontimporter/googleFontImporter/featurePreview.gif)
 

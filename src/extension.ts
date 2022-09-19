@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 
 
-	let insertCommand = vscode.commands.registerCommand('googlefontimporter.testInsert', () => {
+	let insertCommand = vscode.commands.registerCommand('googlefontimporter.importFont', () => {
 		vscode.window.showInputBox().then((fontName) => {
 			const editor = vscode.window.activeTextEditor;
 			if (editor) {
