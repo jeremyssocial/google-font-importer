@@ -10,16 +10,11 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:googlefontimporter.helloWorld",
     "onCommand:googlefontimporter.importFont"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "googlefontimporter.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "googlefontimporter.importFont",
         "title": "Import Google Font"
