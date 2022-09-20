@@ -1,6 +1,6 @@
 # googlefontimporter README
 
-Latest feature: 18.06.2022
+Latest feature: 19.06.2022
 <br>
 use the "googlefontimporter.importFont" command to automatically create an import link for a font (provide the font name in an extra text field)
 <br>
