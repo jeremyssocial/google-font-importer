@@ -12,7 +12,7 @@ The extension will check if the provided font name is an available Google Font a
 
 
 
-everything below this is still the example stuf because I still need to write the actual readme
+> everything below this is still the example stuf because I still need to write the actual readme
 
 ---
 
