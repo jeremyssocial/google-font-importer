@@ -5,6 +5,12 @@ Latest feature: 18.06.2022
 use the "googlefontimporter.importFont" command to automatically create an import link for a font (provide the font name in an extra text field)
 <br>
 ![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](https://raw.githubusercontent.com/MyNameJeremy/googlefontimporter/googleFontImporter/featurePreview.gif)
+<br>
+The extension will check if the provided font name is an available Google Font and give an error notification if it is not.
+<br>
+![Feature preview for the feature that checks if the entered font is an available Google Font](https://raw.githubusercontent.com/MyNameJeremy/googlefontimporter/googleFontImporter/featurePreview2.gif)
+
+
 
 everything below this is still the example stuf because I still need to write the actual readme
 
