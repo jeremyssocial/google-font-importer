@@ -1,33 +1,18 @@
 # google-font-importer README
 
-Latest feature: 19.06.2022
-<br>
+## Features
+
 use the "google-font-importer.importFont" command to automatically create an import link for a font (provide the font name in an extra text field)
 <br>
-![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](https://github.com/MyNameJeremy/google-font-importer/blob/googleFontImporter/featurePreview.gif?raw=true)
+![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](media/featurePreview.gif)
 <br>
 The extension will check if the provided font name is an available Google Font and give an error notification if it is not.
 <br>
-![Feature preview for the feature that checks if the entered font is an available Google Font](https://github.com/MyNameJeremy/google-font-importer/blob/googleFontImporter/featurePreview2.gif?raw=true)
-
-
+![Feature preview for the feature that checks if the entered font is an available Google Font](media/featurePreview2.gif)
 
 > everything below this is still the example stuf because I still need to write the actual readme
 
 ---
-
-This is the README for your extension "google-font-importer". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.
