@@ -23,8 +23,10 @@ export async function activate(context: vscode.ExtensionContext) {
 		return true;
 	}
 
+	let jsonData: string | object = (await axios.get(jsonLocation)).data;
 	//if the data from your url is not in json format, you can use the JSON.parse() function to convert it to json
-	let fontJson = (sliceJsonStringStart) ? JSON.parse((await axios.get(jsonLocation)).data.slice(sliceJsonStringStart)) : (await axios.get(jsonLocation)).data;
+	console.log(sliceJsonStringStart);
+	let fontJson = (typeof jsonData === "string") ? JSON.parse(jsonData.slice(sliceJsonStringStart || 0)) : jsonData;
 	let fontObjects = {};
 	//@ts-ignore
 	fontJson.forEach(item => {
