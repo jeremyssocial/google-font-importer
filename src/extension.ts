@@ -8,9 +8,8 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 export async function activate(context: vscode.ExtensionContext) {
 
-	let jsonLocation: string = 'https://gist.githubusercontent.com/kungfu321/32950b2c18f4708bf259fe16378d4181/raw/352133282e8427d0ee36f37da3d2b66df69c3928/google-fonts';
-	let fontsLocation: string = 'https://fonts.googleapis.com/css?family=';
-
+	let jsonLocation: string = vscode.workspace.getConfiguration('google-font-importer')["json-url"];
+	let fontsLocation: string = vscode.workspace.getConfiguration('google-font-importer')["import-url"];
 
 	const http = new XMLHttpRequest();
 

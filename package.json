@@ -23,7 +23,22 @@
         "command": "google-font-importer.importFont",
         "title": "Import Google Font"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Google Font Importer",
+      "properties": {
+        "google-font-importer.json-url": {
+          "type": "string",
+          "default": "https://gist.githubusercontent.com/kungfu321/32950b2c18f4708bf259fe16378d4181/raw/352133282e8427d0ee36f37da3d2b66df69c3928/google-fonts",
+          "description": "URL of the JSON file that contains the font information"
+        },
+        "google-font-importer.import-url": {
+          "type": "string",
+          "default": "https://fonts.googleapis.com/css?family=",
+          "description": "URL to import the font from"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
