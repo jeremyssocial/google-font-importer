@@ -1,10 +1,16 @@
 import { url } from 'inspector';
 import { text } from 'stream/consumers';
 import * as vscode from 'vscode';
+import axios from 'axios';
+import { ConsoleReporter } from '@vscode/test-electron';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
+
+	let jsonLocation: string = 'https://gist.githubusercontent.com/kungfu321/32950b2c18f4708bf259fe16378d4181/raw/352133282e8427d0ee36f37da3d2b66df69c3928/google-fonts';
+	let fontsLocation: string = 'https://fonts.googleapis.com/css?family=';
+
 
 	const http = new XMLHttpRequest();
 
@@ -17,36 +23,46 @@ export function activate(context: vscode.ExtensionContext) {
 		return true;
 	}
 
-	function addWeights(fontName: string) {
-		let useWeights = [];
-		let url = "https://fonts.googleapis.com/css?family=" + fontName?.replace(" ", "+");
-		for (let weight = 100; weight <= 900; weight += 100) {
-			if (checkUrl(url + ":" + weight)) {
-				useWeights.push(weight);
+	//if the data from your url is not in json format, you can use the JSON.parse() function to convert it to json
+	let fontJson = (await axios.get(jsonLocation)).data;
+	let fontObjects = {};
+	//@ts-ignore
+	fontJson.forEach(item => {
+		let variants: string[] = [];
+		//@ts-ignore
+		item.variants.forEach(variant => {
+			if (variant === "italic") {
+				variants.push("400i");
 			}
-			if (checkUrl(url + ":" + weight + "i")) {
-				useWeights.push(weight + "i");
+			else if (variant.endsWith("italic")) {
+				variants.push(variant.slice(0, -5));
 			}
-		}
-		if (useWeights.length !== 0) {
-			url = url + ":";
-			useWeights.forEach(weight => {
-				url = url + weight + ",";
-			});
-			url = url.slice(0, -1);
-		}
-		return url;
-	}
+			else if (variant === "regular") {
+				variants.push("400");
+			}
+			else {
+				variants.push(variant);
+			}
+		});
+		//@ts-ignore
+		fontObjects[item.id] = [item.family.replace(" ", "+"), variants];
+	});
 
-	let insertCommand = vscode.commands.registerCommand('googlefontimporter.importFont', () => {
+
+
+
+	let insertCommand = vscode.commands.registerCommand('google-font-importer.importFont', () => {
 		vscode.window.showInputBox().then((fontName) => {
 			const editor = vscode.window.activeTextEditor;
 			if (editor) {
 				if (fontName) {
 
-					let importUrl = "https://fonts.googleapis.com/css?family=" + fontName.replace(" ", "+");
-					if (checkUrl(importUrl)) {
-						let url = addWeights(fontName);
+					//@ts-ignore
+					let fontObject = fontObjects[fontName.toLowerCase().replace(" ", "-")];
+					if (fontObject) {
+						//@ts-ignore
+						let url = fontsLocation + fontObject[0] + ':' + fontObject[1].join(",");
+						console.log(url);
 						editor.edit(editBuilder => {
 							editBuilder.insert(editor.selection.active, "@import url('" + url + "');");
 						});
@@ -54,11 +70,12 @@ export function activate(context: vscode.ExtensionContext) {
 					else {
 						vscode.window.showInformationMessage('The requested font families "' + fontName + '" are not available on Google Fonts.');
 					}
+
+
 				}
 				else {
 					vscode.window.showInformationMessage('Font name can\'t be empty');
 				}
-
 			}
 		});
 	});
