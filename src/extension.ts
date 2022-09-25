@@ -10,6 +10,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	let jsonLocation: string = vscode.workspace.getConfiguration('google-font-importer')["json-url"];
 	let fontsLocation: string = vscode.workspace.getConfiguration('google-font-importer')["import-url"];
+	let sliceJsonStringStart: number = vscode.workspace.getConfiguration('google-font-importer')["slice-json-string-start"];
 
 	const http = new XMLHttpRequest();
 
@@ -23,7 +24,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	}
 
 	//if the data from your url is not in json format, you can use the JSON.parse() function to convert it to json
-	let fontJson = (await axios.get(jsonLocation)).data;
+	let fontJson = (sliceJsonStringStart) ? JSON.parse((await axios.get(jsonLocation)).data.slice(sliceJsonStringStart)) : (await axios.get(jsonLocation)).data;
 	let fontObjects = {};
 	//@ts-ignore
 	fontJson.forEach(item => {
@@ -61,7 +62,6 @@ export async function activate(context: vscode.ExtensionContext) {
 					if (fontObject) {
 						//@ts-ignore
 						let url = fontsLocation + fontObject[0] + ':' + fontObject[1].join(",");
-						console.log(url);
 						editor.edit(editBuilder => {
 							editBuilder.insert(editor.selection.active, "@import url('" + url + "');");
 						});

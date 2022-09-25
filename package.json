@@ -36,6 +36,11 @@
           "type": "string",
           "default": "https://fonts.googleapis.com/css?family=",
           "description": "URL to import the font from"
+        },
+        "google-font-importer.slice-json-string-start": {
+          "type": "number",
+          "default": "0",
+          "description": "The start index of the desired data in the JSON file"
         }
       }
     }
