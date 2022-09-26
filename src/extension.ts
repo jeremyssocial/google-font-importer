@@ -45,7 +45,7 @@ export async function activate(context: vscode.ExtensionContext) {
     fontObjects[item.id] = [item.family.replace(' ', '+'), variants];
   });
 
-  let insertCommand = vscode.commands.registerCommand('google-font-importer.importFont', () => {
+  let importFontCommand = vscode.commands.registerCommand('google-font-importer.importFont', () => {
     vscode.window.showInputBox().then((fontName) => {
       const editor = vscode.window.activeTextEditor;
       if (editor) {
@@ -68,7 +68,7 @@ export async function activate(context: vscode.ExtensionContext) {
     });
   });
 
-  context.subscriptions.push(insertCommand);
+  context.subscriptions.push(importFontCommand);
 }
 
 export function deactivate() {}
