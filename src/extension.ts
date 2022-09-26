@@ -3,24 +3,11 @@ import { text } from 'stream/consumers';
 import * as vscode from 'vscode';
 import axios from 'axios';
 import { ConsoleReporter } from '@vscode/test-electron';
-// eslint-disable-next-line @typescript-eslint/naming-convention
-let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 export async function activate(context: vscode.ExtensionContext) {
   let jsonLocation: string = vscode.workspace.getConfiguration('google-font-importer')['json-url'];
   let fontsLocation: string = vscode.workspace.getConfiguration('google-font-importer')['import-url'];
   let sliceJsonStringStart: number = vscode.workspace.getConfiguration('google-font-importer')['slice-json-string-start'];
-
-  const http = new XMLHttpRequest();
-
-  function checkUrl(url: string) {
-    http.open('HEAD', url, false);
-    http.send();
-    if (http.status === 400) {
-      return false;
-    }
-    return true;
-  }
 
   let jsonData: string | object = (await axios.get(jsonLocation)).data;
   //if the data from your url is not in json format, you can use the JSON.parse() function to convert it to json
@@ -53,8 +40,8 @@ export async function activate(context: vscode.ExtensionContext) {
           //@ts-ignore
           let fontObject = fontObjects[fontName.toLowerCase().replace(' ', '-')];
           if (fontObject) {
-            //@ts-ignore
             let url = fontsLocation + fontObject[0] + ':' + fontObject[1].join(',');
+            //@ts-ignore
             editor.edit((editBuilder) => {
               editBuilder.insert(editor.selection.active, "@import url('" + url + "');");
             });
