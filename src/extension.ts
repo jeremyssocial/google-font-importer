@@ -32,25 +32,30 @@ export async function activate(context: vscode.ExtensionContext) {
     fontObjects[item.id] = [item.family.replace(' ', '+'), variants];
   });
 
+  function buildFontUrl(fontName: string) {
+    if (fontName) {
+      //@ts-ignore
+      let fontObject = fontObjects[fontName.toLowerCase().replace(' ', '-')];
+      if (fontObject) {
+        return "@import url('" + fontsLocation + fontObject[0] + ':' + fontObject[1].join(',') + "');";
+      } else {
+        vscode.window.showInformationMessage('The requested font families "' + fontName + '" are not available on Google Fonts.');
+      }
+    } else {
+      vscode.window.showInformationMessage("Font name can't be empty");
+    }
+  }
+
   let importFontCommand = vscode.commands.registerCommand('google-font-importer.importFont', () => {
     vscode.window.showInputBox().then((fontName) => {
       const editor = vscode.window.activeTextEditor;
       if (editor) {
-        if (fontName) {
+        //@ts-ignore
+        let url = buildFontUrl(fontName);
+        editor.edit((editBuilder) => {
           //@ts-ignore
-          let fontObject = fontObjects[fontName.toLowerCase().replace(' ', '-')];
-          if (fontObject) {
-            let url = fontsLocation + fontObject[0] + ':' + fontObject[1].join(',');
-            //@ts-ignore
-            editor.edit((editBuilder) => {
-              editBuilder.insert(editor.selection.active, "@import url('" + url + "');");
-            });
-          } else {
-            vscode.window.showInformationMessage('The requested font families "' + fontName + '" are not available on Google Fonts.');
-          }
-        } else {
-          vscode.window.showInformationMessage("Font name can't be empty");
-        }
+          editBuilder.insert(editor.selection.active, url);
+        });
       }
     });
   });
