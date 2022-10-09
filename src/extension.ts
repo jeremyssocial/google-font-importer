@@ -60,7 +60,57 @@ export async function activate(context: vscode.ExtensionContext) {
     });
   });
 
-  context.subscriptions.push(importFontCommand);
+  let importFontWithVariantsCommand = vscode.commands.registerCommand('google-font-importer.importFontWithVariants', () => {
+    vscode.window.showInputBox().then((fontName) => {
+      if (!fontName) {
+        vscode.window.showInformationMessage("Font name can't be empty");
+      } else {
+        //@ts-ignore
+        let fontObject = fontObjects[fontName.toLowerCase().replace(' ', '-')];
+        if (!fontObject) {
+          vscode.window.showInformationMessage('The requested font families "' + fontName + '" are not available on Google Fonts.');
+        } else {
+          vscode.window.showInputBox().then((fontWeights) => {
+            if (!fontWeights) {
+              vscode.window.showInformationMessage("Font variants can't be empty");
+            } else {
+              const editor = vscode.window.activeTextEditor;
+              if (editor) {
+                //@ts-ignore
+                let fontWeightsArray = fontWeights.split(',');
+                let fontWeightsArrayFiltered = fontWeightsArray.filter((fontWeight) => {
+                  return fontObject[1].includes(fontWeight);
+                });
+                fontWeightsArrayFiltered = [...new Set(fontWeightsArrayFiltered)];
+                if (!fontWeightsArrayFiltered.length) {
+                  vscode.window.showInformationMessage(
+                    'The requested font variants "' + fontWeightsArray.join(',') + '" are not available for the font "' + fontName + '".'
+                  );
+                } else {
+                  let url = "@import url('" + fontsLocation + fontObject[0] + ':' + fontWeightsArrayFiltered.join(',') + "');";
+                  editor.edit((editBuilder) => {
+                    //@ts-ignore
+                    editBuilder.insert(editor.selection.active, url);
+                  });
+                  if (fontWeightsArrayFiltered.length !== fontWeightsArray.length) {
+                    vscode.window.showInformationMessage(
+                      'The requested font variants "' +
+                        fontWeightsArray.filter((fontWeight) => !fontWeightsArrayFiltered.includes(fontWeight)).join(',') +
+                        '" are not available for the font "' +
+                        fontName +
+                        '".'
+                    );
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+    });
+  });
+
+  context.subscriptions.push(importFontCommand, importFontWithVariantsCommand);
 }
 
 export function deactivate() {}

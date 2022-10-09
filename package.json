@@ -14,14 +14,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:google-font-importer.importFont"
+    "onCommand:google-font-importer.importFont",
+    "onCommand:google-font-importer.importFontWithVariants"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "google-font-importer.importFont",
-        "title": "Import Google Font"
+        "title": "Import Google Font with all variants"
+      },
+      {
+        "command": "google-font-importer.importFontWithVariants",
+        "title": "Import Google Font with specific variants (seperate with commas)"
       }
     ],
     "configuration": {
