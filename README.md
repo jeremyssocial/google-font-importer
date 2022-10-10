@@ -19,6 +19,20 @@ The extension will check if the provided font name is an available Google Font a
 use the "google-font-importer.importFontWithVariants" command to automatically create an import link for a font with variants (provide the font name and then the variants in an extra text field)
 
 <br>
+
+## Release Notes
+
+Users appreciate release notes as you update your extension.
+
+### 1.0.0
+
+Initial release of google-font-importer
+
+### 1.1.0
+
+Added feature: "google-font-importer.importFontWithVariants" - command to only import certain font weights
+
+<br>
 <br>
 
 > everything below this is still the example stuf because I still need to write the actual readme
@@ -43,18 +57,6 @@ This extension contributes the following settings:
 ## Known Issues
 
 Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of google-font-importer
-
-### 1.1.0
-
-Added feature: "google-font-importer.importFontWithVariants" - command to only import certain font weights
 
 ---
 
