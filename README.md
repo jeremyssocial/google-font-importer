@@ -2,6 +2,7 @@
 
 ## Features
 
+### importFont
 use the "google-font-importer.importFont" command to automatically create an import link for a font (provide the font name in an extra text field)
 <br>
 ![Feature preview for my new feature where you can use a text field to give a specific font name that the import link will automatically be generated for](media/featurePreview.gif)
@@ -10,9 +11,18 @@ The extension will check if the provided font name is an available Google Font a
 <br>
 ![Feature preview for the feature that checks if the entered font is an available Google Font](media/featurePreview2.gif)
 
+<br>
+
+### importFontWithVariants
+use the "google-font-importer.importFontWithVariants" command to automatically create an import link for a font with variants (provide the font name and then the variants in an extra text field)
+
+<br>
+<br>
+
 > everything below this is still the example stuf because I still need to write the actual readme
 
 ---
+
 ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.
@@ -70,4 +80,3 @@ You can author your README using Visual Studio Code. Here are some useful editor
 - [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
-
